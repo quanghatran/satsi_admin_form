@@ -19,18 +19,20 @@ const LoginPage = (props) => {
 		setPendding(true);
 		const inforCustomer = { Username: username, Password: password };
 
-		fetch(`${process.env.REACT_APP_API_URL_LP}/auth/login`, {
+		fetch("http://206.189.90.147:5001/api/auth/login", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(inforCustomer),
 		})
 			.then((res) => {
 				if (!res.ok) {
+					console.log(process.env.REACT_APP_API_URL_LP);
 					throw Error("dang nhap that bai");
 				}
 				return res.json();
 			})
 			.then((data) => {
+				console.log(process.env.REACT_APP_API_URL_LP);
 				setPendding(false);
 				setUsername("");
 				setPassword("");
